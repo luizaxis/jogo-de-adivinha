@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jogo de Adivinhação</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="game">
+        <h1>Jogo de Adivinhação</h1>
+        <p>Tente adivinhar um número entre 1 e 100!</p>
+        <input type="number" id="guess-input" min="1" max="100" placeholder="Seu palpite">
+        <button id="guess-button">Adivinhar</button>
+        <p id="feedback"></p>
+        <button id="reset-button" style="display:none;">Reiniciar Jogo</button>
+    </div>
+
+    <script>
+        let randomNumber = Math.floor(Math.random() * 100) + 1;
+        let guessCount = 0;
+
+        function giveFeedback(message, color) {
+            const feedback = document.getElementById('feedback');
+            feedback.textContent = message;
+            feedback.style.color = color;
+        }
+
+        function resetGame() {
+            randomNumber = Math.floor(Math.random() * 100) + 1;
+            guessCount = 0;
+            document.getElementById('guess-input').value = '';
+            giveFeedback('', '');
+            document.getElementById('guess-button').style.display = 'inline-block';
+            document.getElementById('reset-button').style.display = 'none';
+        }
+
+        function playGame() {
+            const guessInput = document.getElementById('guess-input');
+            const guessButton = document.getElementById('guess-button');
+            const resetButton = document.getElementById('reset-button');
+            const userGuess = Number(guessInput.value);
+            guessCount++;
+
+            if (userGuess === randomNumber) {
+                giveFeedback(`Parabéns! Você adivinhou o número ${randomNumber} em ${guessCount} tentativas.`, 'green');
+                guessButton.style.display = 'none';
+                resetButton.style.display = 'inline-block';
+            } else if (userGuess > randomNumber) {
+                giveFeedback('Mais alto! Tente novamente.', 'red');
+            } else {
+                giveFeedback('Mais baixo! Tente novamente.', 'red');
+            }
+        }
+
+        document.getElementById('guess-button').addEventListener('click', playGame);
+        document.getElementById('reset-button').addEventListener('click', resetGame);
+    </script>
+</body>
+</html>
