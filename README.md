@@ -54,10 +54,4 @@ Bem-vindo ao Jogo de Adivinhação! Este é um jogo simples onde o objetivo é a
 
 Se desejar contribuir para o projeto, sinta-se à vontade para abrir issues ou enviar pull requests.
 
-## Licença
-
-Este projeto está licenciado sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
-
----
-
 Desfrute do jogo e boa sorte nas suas adivinhações!
